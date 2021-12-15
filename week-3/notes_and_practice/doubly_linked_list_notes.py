@@ -49,9 +49,33 @@ class DoublyLinkedList(object):
             self.count -= 1
             
             
+    def iter(self):
+        current = self.tail
+        while current:
+            val = current.data
+            current = current.next
+            yield val
+        
+        
     def search(self, data):
         for node_data in self.iter():
             if data == node_data:
                 return True
             return False
             
+    
+    def peek(self):
+        if self.head:
+            return self.head.data
+        if self.tail:
+            return self.tail.data
+        else:
+            return None
+        
+        
+        
+new_list = DoublyLinkedList()
+new_list.append("Hello")
+new_list.append("World")
+print(new_list.peek())
+print(new_list.search("World"))
