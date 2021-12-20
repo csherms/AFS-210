@@ -35,10 +35,19 @@ class HashTable:
                 else:
                     return None
         
+        
+        # Must fix this get function
     def get(self,key):
         # Insert your code here to get data by key
         hashValue = self.hashfunction(key)
-        return self.data[hashValue]
+        if self.keys[hashValue] == key:
+            return self.data[hashValue]
+        else:
+            hashValue = self.rehash(key)
+            if self.keys[hashValue] == key:
+                return self.data[hashValue]
+            else:
+                return None
     
     def __getitem__ (self,key):
         return self.get(key)
@@ -67,3 +76,5 @@ print(H.getValues())
 
 # print the value for key 52
 print(H[52])
+print(H[80])
+print(H[70])
