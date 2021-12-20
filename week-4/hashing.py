@@ -36,7 +36,8 @@ class HashTable:
                     return None
         
         
-        # Must fix this get function
+        # Updated the get method to handle hahing collision
+        # collision resolved with else statement
     def get(self,key):
         # Insert your code here to get data by key
         hashValue = self.hashfunction(key)
