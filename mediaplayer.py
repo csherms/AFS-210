@@ -90,7 +90,7 @@ class Deque:
 new_playlist = Deque()
 new_playlist.add_song("hey jude", "the beatles")
 new_playlist.add_song("dancing nancies", "dave matthews")
-new_playlist.add_song("purple hayze", "jimi hendrix")
+new_playlist.add_song("purple haze", "jimi hendrix")
 new_playlist.add_song("what i got", "sublime")
 
 
