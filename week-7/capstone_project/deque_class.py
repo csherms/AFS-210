@@ -1,4 +1,3 @@
-from multiprocessing import set_forkserver_preload
 import random
 class MyDeque():
     def __init__(self):
