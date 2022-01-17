@@ -29,11 +29,12 @@ class Song:
 class MyMediaPlayer():
     def __init__(self):
         self.playlist = MyDeque()
+        self.isPlaying = False
 
     def add_song(self, song):
         self.playlist.appendLeft(song)
         
-    def remove_song(self, title):#2 still broken
+    def remove_song(self, title):
         self.playlist.remove(title)
         
     def skip(self):
@@ -45,18 +46,22 @@ class MyMediaPlayer():
         self.play()
         
     def play(self):
+        self.isPlaying = True
         cur_song = self.playlist.peek_left()
         print(cur_song.getTitle())
         
     def song_info(self):
-        print(self.playlist.get_data())
+        if self.isPlaying:
+            print(self.playlist.get_data())
+        else:
+            print("No song currently playing...")
         
     def show_playlist(self):
-        return self.playlist.show_all()
+        self.playlist.printDeque()
         
     def shuffle_songs(self):
         self.playlist.shuffle_all_songs()
-        print(self.play())
+        self.play()
         
         
         
@@ -77,7 +82,7 @@ player.add_song(Song("Spancil Hill", "The High Kings"))
 def menu():
     print(20 * "-" , "MENU" , 20 * "-")
     print("1. Add Song to Playlist")
-    print("2. Remove song from Playlist") #2 still broken
+    print("2. Remove song from Playlist")
     print("3. Play")
     print("4. Skip")
     print("5. Go Back")
@@ -101,7 +106,9 @@ while True:
     elif choice == 2:
         # Prompt user for Song Title 
         # remove song from playlist
-        title = input("Enter song title: ")
+        print("\nSong List:\n")
+        player.playlist.show_all()
+        title = input("\nEnter song title to delete:\n")
         player.remove_song(title)
     elif choice == 3:
         # Play the playlist from the beginning

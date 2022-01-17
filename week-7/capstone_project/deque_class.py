@@ -1,3 +1,4 @@
+from multiprocessing import set_forkserver_preload
 import random
 class MyDeque():
     def __init__(self):
@@ -25,19 +26,18 @@ class MyDeque():
         return self.items.pop(0)
         
     def peek(self):
-        return self.items[self.count()-1]
+        return self.items[-1]
     
     def peek_left(self):
         return self.items[0]
     
-    def remove(self, title):#2 still broken
-        song_index = 0
-        for i in self.items:
-            if title == song_index:
-                break
-            song_index +=1
-            self.items.pop(song_index)
-        print("Song removed from playlist...")
+    def remove(self, title):
+        numRotation = len(self.items)-1
+        for _ in range(numRotation):
+            if str.lower(self.peek().getTitle()) == str.lower(title):
+                self.pop()
+            self.rotate(1)
+        print("\nSong removed from playlist...\n")
         
     def reverse(self):
         self.items.reverse()
@@ -45,6 +45,12 @@ class MyDeque():
     def show_all(self):
         for i in self.items:
             print(i)
+            
+    def printDeque(self):
+        numRotation = len(self.items)
+        for _ in range(numRotation):
+            print(self.peek())
+            self.rotate(1)
             
     def get_data(self):
         cur_song = self.peek_left()  
